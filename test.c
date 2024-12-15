@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "b1.h"
 int main()
 {
     printf("welcome to git");
