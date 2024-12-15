@@ -1,4 +1,6 @@
 #include <stdio.h>
-int main(){
+int main()
+{
+    printf("welcome to git");
     return 0;
 }
