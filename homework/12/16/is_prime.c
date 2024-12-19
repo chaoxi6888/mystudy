@@ -29,7 +29,7 @@
 void is_prime(int n) // 前n个质数
 {
     int count = 0;
-    for (int i = 2; count < n + 1; i++)
+    for (int i = 2; count < n; i++)
     {
         int flag = 1;
         for (int j = 2; j * j <= i; j++)
