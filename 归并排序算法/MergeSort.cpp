@@ -4,7 +4,7 @@ using namespace std;
 
 const int kmod = 1000000007;
 
-void merge__(vector<int> &arr, vector<int> &tmp, int l, int mid, int r, int &ret)
+void merge(vector<int> &arr, vector<int> &tmp, int l, int mid, int r)
 {
     int i = l, j = mid + 1, k = 0;
 
@@ -13,8 +13,6 @@ void merge__(vector<int> &arr, vector<int> &tmp, int l, int mid, int r, int &ret
         if (arr[i] > arr[j])
         {
             tmp[k++] = arr[j++];
-            ret += (mid - i + 1);
-            ret %= kmod;
         }
         else
         {
@@ -37,7 +35,7 @@ void merge__(vector<int> &arr, vector<int> &tmp, int l, int mid, int r, int &ret
     }
 }
 
-void merge_sort__(vector<int> &arr, vector<int> &tmp, int l, int r, int &ret)
+void mergesort(vector<int> &arr, vector<int> &tmp, int l, int r)
 {
     if (l >= r)
     {
@@ -45,25 +43,29 @@ void merge_sort__(vector<int> &arr, vector<int> &tmp, int l, int r, int &ret)
     }
 
     int mid = l + ((r - l) >> 1);
-    merge_sort__(arr, tmp, l, mid, ret);
-    merge_sort__(arr, tmp, mid + 1, r, ret);
-    merge__(arr, tmp, l, mid, r, ret);
+    mergesort(arr, tmp, l, mid);
+    mergesort(arr, tmp, mid + 1, r);
+    merge(arr, tmp, l, mid, r);
 }
 
-int InversePairs(vector<int> &data)
+void MergeSort(vector<int> &data)
 {
-    int ret = 0;
-    // 在最外层开辟数组
+    int count = 0;
     vector<int> tmp(data.size());
-    merge_sort__(data, tmp, 0, data.size() - 1, ret);
-    return ret;
+    mergesort(data, tmp, 0, data.size() - 1);
 }
 
 int main()
 {
     vector<int> a{6, 4, 5, 1, 3};
-    cout << InversePairs(a);
+    printf("原来的序列为：");
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ", a[i]);
+    }
     printf("\n");
+    MergeSort(a);
+    printf("排序后的序列：");
     for (int i = 0; i < 5; i++)
     {
         printf("%d ", a[i]);
