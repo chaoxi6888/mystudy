@@ -27,7 +27,7 @@ int main()
     int n;
     printf("请输入n:");
     scanf("%d", &n);
-    printf("斐波那契数列的第n个数为：%d\n", ferbic(n));
-    printf("斐波那契数列的第n个数为：%d", ferbic_for(n));
+    printf("斐波那契数列的第n个数为:%d\n", ferbic(n));
+    printf("斐波那契数列的第n个数为:%d", ferbic_for(n));
     return 0;
 }
