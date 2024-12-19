@@ -2,6 +2,7 @@
 
 void is_prime(int n)
 {
+    int count = 0;
     for (int i = 2; i <= n; i++)
     {
         int flag = 1;
@@ -10,10 +11,18 @@ void is_prime(int n)
             if (i % j == 0)
             {
                 flag = 0;
+                break;
             }
         }
         if (flag == 1)
-            printf("%d ", i);
+        {
+            printf("%d\t", i);
+            count++;
+            if (count % 10 == 0)
+            {
+                printf("\n");
+            }
+        }
     }
 }
 
@@ -22,7 +31,7 @@ int main()
     int n;
     printf("请输入n的值(n>=2):");
     scanf("%d", &n);
-    printf("%d以内的质数有:", n);
+    printf("%d以内的质数有:\n", n);
     is_prime(n);
     return 0;
 }
