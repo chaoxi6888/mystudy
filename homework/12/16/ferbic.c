@@ -1,12 +1,19 @@
 #include <stdio.h>
 #define N 100
 
+int time = 0;
+
 int ferbic(int n) // 递归实现
 {
+    time++;
     if (n == 1)
+    {
         return 0;
+    }
     if (n == 2)
+    {
         return 1;
+    }
     return (ferbic(n - 1) + ferbic(n - 2));
 }
 
@@ -25,9 +32,10 @@ int ferbic_for(int n) // 循环实现
 int main()
 {
     int n;
-    printf("请输入n:");
+    printf("请输入n(n<=100):");
     scanf("%d", &n);
-    printf("斐波那契数列的第%d个数为:%d\n", n, ferbic(n));
+    int result = ferbic(n);
+    printf("斐波那契数列的第%d个数为:%d,递归的次数:%d\n", n, result, time);
     printf("斐波那契数列的第%d个数为:%d", n, ferbic_for(n));
     return 0;
 }
