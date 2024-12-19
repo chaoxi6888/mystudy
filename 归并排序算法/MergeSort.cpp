@@ -2,8 +2,6 @@
 #include <iostream>
 using namespace std;
 
-const int kmod = 1000000007;
-
 void merge(vector<int> &arr, vector<int> &tmp, int l, int mid, int r)
 {
     int i = l, j = mid + 1, k = 0;
