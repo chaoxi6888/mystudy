@@ -11,17 +11,19 @@ struct user
     // 字符串既可以用字符数组又可以使用字符串指针
 };
 
+void newyear(struct user *p)
+{
+    strcpy(p->name, "chaoxi");
+    p->age++;
+    p->tel = "123456";
+}
+
 int main()
 {
     struct user chaoxi = {"chaoxi", 18, "123456"};
-    struct user *p = &chaoxi;
-    strncpy(chaoxi.name, "chaoxi6888", 16);
-    strncpy(p->name, "chaoxi68", 16);
+    newyear(&chaoxi); // 要寻址
     printf("%s\n", chaoxi.name);
     printf("%d\n", chaoxi.age);
     printf("%s\n", chaoxi.tel);
-    printf("%s\n", p->name);
-    printf("%d\n", p->age);
-    printf("%s\n", p->tel);
     return 0;
 }
