@@ -18,12 +18,18 @@ void newyear(struct user *p)
     p->tel = "123456";
 }
 
+void print(struct user *p)
+{
+    printf("%s\n", p->name);
+    printf("%d\n", p->age);
+    printf("%s\n", p->tel);
+}
+
 int main()
 {
     struct user chaoxi = {"chaoxi", 18, "123456"};
     newyear(&chaoxi); // 要寻址
-    printf("%s\n", chaoxi.name);
-    printf("%d\n", chaoxi.age);
-    printf("%s\n", chaoxi.tel);
+    print(&chaoxi);
+    printf("%ld\n", sizeof(struct user)); // 16+4+6
     return 0;
 }
