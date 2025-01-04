@@ -5,9 +5,10 @@
 struct user
 {
     /* data */
-    char name[16];
     int age;
+    char name[16];
     char *tel;
+
     // 字符串既可以用字符数组又可以使用字符串指针
 };
 
@@ -27,9 +28,13 @@ void print(struct user *p)
 
 int main()
 {
-    struct user chaoxi = {"chaoxi", 18, "123456"};
+    struct user chaoxi = {
+        18,
+        "chaoxi",
+        "123456",
+    };
     newyear(&chaoxi); // 要寻址
     print(&chaoxi);
-    printf("%ld\n", sizeof(struct user)); // 16+4+6
+    printf("%ld\n", sizeof(struct user)); // 有对齐
     return 0;
 }
