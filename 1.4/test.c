@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct user
 {
@@ -14,6 +15,8 @@ int main()
 {
     struct user chaoxi = {"chaoxi", 18, "123456"};
     struct user *p = &chaoxi;
+    strncpy(chaoxi.name, "chaoxi6888", 16);
+    strncpy(p->name, "chaoxi68", 16);
     printf("%s\n", chaoxi.name);
     printf("%d\n", chaoxi.age);
     printf("%s\n", chaoxi.tel);
