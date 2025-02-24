@@ -8,11 +8,12 @@ const char BASE62[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU
 
 struct url // 结构体
 {
+
     char URL[100];
     char shortURL[20];
 };
 
-unsigned long long switchs() // 随机生成id
+unsigned long long create() // 随机生成id
 {
     // 使用当前时间初始化种子
     srand(time(NULL));
@@ -62,7 +63,7 @@ int main()
     struct url url1;
     unsigned long long id;
     strncpy(url1.URL, "8d608d0b-9a33-4831-8c8a-d2efa350c4fe", 100);
-    id = switchs();
+    id = create();
     printf("%lld\n", id);
     encode_base62(id, url1.shortURL);
     print(url1);
