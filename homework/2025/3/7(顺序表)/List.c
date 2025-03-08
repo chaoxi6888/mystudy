@@ -77,7 +77,10 @@ int get(List *l, int index) {}
 
 int find(List *l, int val) {}
 
-int size(List *l) {}
+int size(List *l)
+{
+    printf("现在表的长度为:%d\n", l->size);
+}
 
 void empty(List *l) {}
 
@@ -103,7 +106,8 @@ int main()
     add(list, 400);
     add(list, 500);
     insert(list, 5, 999);
-    show(list);
     printf("删除的元素为%d\n", del(list, 3));
+    show(list);
+    size(list);
     return 0;
 }
