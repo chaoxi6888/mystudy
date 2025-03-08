@@ -12,11 +12,11 @@ typedef struct // 定义线性表List可不写
 
 void grow(List *l)
 {
-        int *newdata;
-        l->capacity++;
-        newdata = realloc(l->data, sizeof(int) * l->capacity);
-        l->data = newdata;
-        // printf("容量变大一位\n");
+    int *newdata;
+    l->capacity++;
+    newdata = realloc(l->data, sizeof(int) * l->capacity);
+    l->data = newdata;
+    // printf("容量变大一位\n");
 }
 
 // 声明相关操作,参数类型为指针
@@ -74,7 +74,15 @@ int del(List *l, int index)
 
 int get(List *l, int index) {}
 
-int find(List *l, int val) {}
+int find(List *l, int val)
+{
+    for (int i = 0; i < l->size; i++)
+    {
+        if (l->data[i] == val)
+            return i;
+    }
+    printf("顺序表中不存在这个值\n");
+}
 
 int size(List *l)
 {
