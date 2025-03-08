@@ -10,6 +10,15 @@ typedef struct // 定义线性表List可不写
     int capacity; // 容量（最大值）
 } List;
 
+void grow(List *l)
+{
+        int *newdata;
+        l->capacity++;
+        newdata = realloc(l->data, sizeof(int) * l->capacity);
+        l->data = newdata;
+        // printf("容量变大一位\n");
+}
+
 // 声明相关操作,参数类型为指针
 void init(List *l) // 初始化
 {
@@ -22,13 +31,8 @@ void init(List *l) // 初始化
 void add(List *l, int e) // 添加数
 {
     // 是否越界
-    if (l->size >= l->capacity)
-    {
-        int *newdata;
-        l->capacity++;
-        newdata = realloc(l->data, sizeof(int) * l->capacity);
-        l->data = newdata;
-    }
+    if (l->size == l->capacity)
+        grow(l);
     l->data[l->size] = e;
     l->size++;
 }
@@ -37,12 +41,7 @@ void insert(List *l, int index, int e)
 {
     // 是否越界
     if (l->size == l->capacity)
-    {
-        int *newdata;
-        l->capacity++;
-        newdata = realloc(l->data, sizeof(int) * l->capacity);
-        l->data = newdata;
-    }
+        grow(l);
     if (index <= l->size)
     {
         for (int i = l->size - 1; i >= index; i--)
