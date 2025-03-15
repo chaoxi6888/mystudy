@@ -63,6 +63,17 @@ void insert(Node *header, int index, char c)
     p->front = node;
 }
 
+void del(Node *header, int index)
+{
+    Node *p = header->next;
+    for (int i = 0; i < index; i++)
+    {
+        p = p->next;
+    }
+    p->front->next = p->next;
+    p->next->front = p->front;
+}
+
 // 打印链表
 void show(Node *header, Node *end)
 {
@@ -87,7 +98,8 @@ int main()
     add(end, 'D');
     add(end, 'E');
     insert(header, 3, 'F'); // 在位置 3 插入节点 'F'
-    show(header, end);      // 打印翻转前的链表
+    del(header, 1);
+    show(header, end); // 打印翻转前的链表
     printf("长度为:%d\n", len(header, end));
     return 0;
 }
