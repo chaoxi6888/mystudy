@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct // 定义线性表List可不写
+typedef struct List // 定义线性表List可不写
 {
     // 类型取决于存放的数据类型
     // 建议数组使用指针动态分配空间
@@ -12,20 +12,24 @@ typedef struct // 定义线性表List可不写
 
 void grow(List *l)
 {
-    int *newdata;
     l->capacity++;
-    newdata = realloc(l->data, sizeof(int) * l->capacity);
-    l->data = newdata;
+    l->data = (int *)realloc(l->data, sizeof(int) * l->capacity);
     // printf("容量变大一位\n");
 }
 
 // 声明相关操作,参数类型为指针
+List *create(List *l)
+{
+    l = (List *)malloc(sizeof(List)); // 指针初始化，分配空间
+    return l;
+}
+
 void init(List *l) // 初始化
 {
     l->capacity = 4;
     l->size = 0;
     // 初始化，创建了一块连续的存储空间
-    l->data = malloc(sizeof(int) * l->capacity);
+    l->data = (int *)malloc(sizeof(int) * l->capacity);
 }
 
 void add(List *l, int e) // 添加数
@@ -96,7 +100,7 @@ void show(List *l)
     printf("线性表:");
     for (int i = 0; i < l->size; i++)
     {
-        printf("%d ", l->data[i]);
+        printf("%d->", l->data[i]);
     }
     printf("\n大小:%d, 容量:%d\n", l->size, l->capacity);
 }
@@ -104,7 +108,7 @@ void show(List *l)
 int main()
 {
     List *list;
-    list = malloc(sizeof(List)); // 指针初始化，分配空间
+    list = create(list);
     //   初始化线性表
     init(list);
     add(list, 100);
@@ -112,9 +116,9 @@ int main()
     add(list, 300);
     add(list, 400);
     add(list, 500);
-    insert(list, 5, 999);
-    printf("删除的元素为%d\n", del(list, 3));
+    // insert(list, 5, 999);
+    // printf("删除的元素为%d\n", del(list, 3));
     show(list);
-    size(list);
+    // size(list);
     return 0;
 }
