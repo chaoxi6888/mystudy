@@ -10,13 +10,6 @@ typedef struct List // 定义线性表List可不写
     int capacity; // 容量（最大值）
 } List;
 
-void grow(List *l)
-{
-    l->capacity++;
-    l->data = (int *)realloc(l->data, sizeof(int) * l->capacity);
-    // printf("容量变大一位\n");
-}
-
 // 声明相关操作,参数类型为指针
 List *create(List *l)
 {
@@ -30,6 +23,13 @@ void init(List *l) // 初始化
     l->size = 0;
     // 初始化，创建了一块连续的存储空间
     l->data = (int *)malloc(sizeof(int) * l->capacity);
+}
+
+void grow(List *l)
+{
+    l->capacity++;
+    l->data = (int *)realloc(l->data, sizeof(int) * l->capacity);
+    // printf("容量变大一位\n");
 }
 
 void add(List *l, int e) // 添加数
@@ -76,24 +76,33 @@ int del(List *l, int index)
     return val;
 }
 
-int get(List *l, int index) {}
-
-int find(List *l, int val)
+void find(List *l, int val)
 {
     for (int i = 0; i < l->size; i++)
     {
         if (l->data[i] == val)
-            return i;
+            printf("你要找的数在第几位(索引位置):%d\n", i);
+        return;
     }
     printf("顺序表中不存在这个值\n");
 }
 
-int size(List *l)
+void empty(List *l)
 {
-    printf("现在表的长度为:%d\n", l->size);
+    l->size = 0; // 清空线性表，但不释放内存
+    printf("线性表已清空\n");
 }
 
-void empty(List *l) {}
+void destroy(List *l)
+{
+    if (l->data)
+    {
+        free(l->data); // 释放数组内存
+        l->data = NULL;
+    }
+    free(l); // 释放线性表结构体内存
+    printf("线性表已销毁\n");
+}
 
 void show(List *l)
 {
@@ -116,9 +125,13 @@ int main()
     add(list, 300);
     add(list, 400);
     add(list, 500);
-    // insert(list, 5, 999);
-    // printf("删除的元素为%d\n", del(list, 3));
+    insert(list, 3, 999);
     show(list);
-    // size(list);
+    printf("删除的元素为%d\n", del(list, 3));
+    show(list);
+    find(list, 100);
+    empty(list);
+    show(list);
+    destroy(list);
     return 0;
 }
