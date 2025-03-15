@@ -54,6 +54,8 @@ void addbegin(Node **head, int data)
     *head = newNode;
 }
 
+void insert() {}
+
 // 删除链表中的节点
 void deleteNode(Node **head, int data)
 {
