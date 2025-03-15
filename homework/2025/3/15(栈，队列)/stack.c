@@ -40,6 +40,12 @@ void stackpop(Stack *stack)
     }
 }
 
+int stacktopget(Stack *stack)
+{
+    int e = stack->data[stack->top];
+    return e;
+}
+
 void show(Stack *stack)
 {
     printf("栈(从左往右为从栈底开始):");
@@ -63,6 +69,7 @@ int main()
     stackpush(stack, 11);
     stackpush(stack, 15);
     show(stack);
+    printf("此时的栈顶元素是:%d\n", stacktopget(stack));
     stackpop(stack);
     stackpop(stack);
     stackpop(stack);
