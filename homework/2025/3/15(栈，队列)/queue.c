@@ -24,6 +24,10 @@ void grow(Queue *q)
 
 void enqueue(Queue *q, int e)
 {
+    if (q->rear == -1)
+    {
+        q->front++;
+    }
     if (q->rear == q->MaxSize - 1)
     {
         grow(q);
@@ -35,14 +39,29 @@ void enqueue(Queue *q, int e)
     }
 }
 
+void dequeue(Queue *q)
+{
+    int e = q->data[q->front];
+    if (q->front > q->rear)
+    {
+        printf("队列空\n");
+    }
+    else
+    {
+        printf("出队元素:%d\n", e);
+        q->front++;
+    }
+}
+
 void show(Queue *q)
 {
     printf("队列:");
-    int temp = 0;
+    int temp = q->front;
     while (temp <= q->rear)
     {
         printf("%d ", q->data[temp++]);
     }
+    printf("\n");
 }
 
 int main(int argc, char const *argv[])
@@ -52,6 +71,12 @@ int main(int argc, char const *argv[])
     init(queue);
     enqueue(queue, 2);
     enqueue(queue, 4);
+    enqueue(queue, 6);
+    show(queue);
+    dequeue(queue);
+    dequeue(queue);
+    dequeue(queue);
+    dequeue(queue);
     show(queue);
     return 0;
 }
