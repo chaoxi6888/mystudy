@@ -36,7 +36,7 @@ void stackpop(Stack *stack)
     else
     {
         e = stack->data[stack->top--];
-        printf("出栈的元素为:%d\n", e);
+        printf("%d", e);
     }
 }
 
@@ -57,27 +57,27 @@ void show(Stack *stack)
     printf("大小:%d,容量:%d\n", stack->top + 1, stack->capacity);
 }
 
+// 解决进制转换的函数
+void translate(Stack *s, int a, int b)
+{
+    printf("%d转换成%d进制数为:", a, b);
+    while (a != 0)
+    {
+        stackpush(s, a % b);
+        a /= b;
+    }
+    while (s->top >= 0)
+    {
+        stackpop(s);
+    }
+    printf("\n");
+}
+
 int main()
 {
     Stack *stack;
     stack = (Stack *)malloc(sizeof(Stack));
     init(stack);
-    stackpush(stack, 2);
-    stackpush(stack, 4);
-    stackpush(stack, 6);
-    stackpush(stack, 8);
-    stackpush(stack, 11);
-    stackpush(stack, 15);
-    show(stack);
-    printf("此时的栈顶元素是:%d\n", stacktopget(stack));
-    stackpop(stack);
-    stackpop(stack);
-    stackpop(stack);
-    stackpop(stack);
-    stackpop(stack);
-    stackpop(stack);
-    stackpop(stack);
-    stackpop(stack);
-    show(stack);
+    translate(stack, 19, 2);
     return 0;
 }
