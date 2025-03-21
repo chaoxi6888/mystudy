@@ -57,7 +57,7 @@ void show(Stack *stack)
     printf("大小:%d,容量:%d\n", stack->top + 1, stack->capacity);
 }
 
-// 解决进制转换的函数
+// 解决进制转换的函数,非十六进制
 void translate(Stack *s, int a, int b)
 {
     printf("%d转换成%d进制数为:", a, b);
